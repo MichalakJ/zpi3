@@ -15,7 +15,7 @@ import java.nio.file.StandardCopyOption;
 public class FileDownloader {
 
     public static void downloadFile(String url, String destination) throws IOException {
-        URL website = new URL("http://www.website.com/information.asp");
+        URL website = new URL(url);
         InputStream in = website.openStream();
         Path target = Paths.get(destination);
         Files.copy(in, target, StandardCopyOption.REPLACE_EXISTING);
