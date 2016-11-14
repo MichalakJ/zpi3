@@ -23,4 +23,16 @@ public class ChecksumUtilsTest {
         assertThat(checkSum.isEmpty(), is(false));
     }
 
+    @Test
+    public void shouldReturnSHAChecksum() {
+        File file = new File("someFile.txt");
+        String checkSum = "";
+        try {
+            checkSum = ChecksumUtils.calculateSHAChecksum(file);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        assertThat(checkSum.isEmpty(), is(false));
+    }
+
 }
