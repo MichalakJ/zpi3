@@ -19,5 +19,10 @@ public class FileDownloaderTest {
         FileDownloader.downloadFile("http://www.textfiles.com/games/abc.txt", "test.txt");
         assertThat(new File("test.txt").exists(), equalTo(true));
     }
+    
+    @Test(expected = MalformedURLException.class)
+    public void incorrectURL_downloadFile_throwsMalformedURLException() throws IOException {
+        FileDownloader.downloadFile("gaws", "E:\\tests\\test2.txt");
+    }
 
 }
