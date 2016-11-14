@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
+import static org.apache.commons.codec.digest.DigestUtils.*;
 import static org.apache.commons.codec.digest.DigestUtils.md5Hex;
 
 /**
@@ -26,5 +27,19 @@ public class ChecksumUtils {
         return md5;
     }
 
+    public static String calculateSHAChecksum(File file) throws NoSuchAlgorithmException {
+        FileInputStream fis = null;
+        String sha1 = "";
+        try {
+            fis = new FileInputStream(file);
+            sha1 = sha1Hex(fis);
+            fis.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return sha1;
+    }
 
 }
