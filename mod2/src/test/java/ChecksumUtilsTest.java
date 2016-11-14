@@ -35,4 +35,17 @@ public class ChecksumUtilsTest {
         assertThat(checkSum.isEmpty(), is(false));
     }
 
+    @Test
+    public void shouldReturnDifferentChecksum() {
+        File file = new File("someFile.txt");
+        String SHAcheckSum = "";
+        String MD5checkSum = "";
+        try {
+            SHAcheckSum = ChecksumUtils.calculateSHAChecksum(file);
+            MD5checkSum = ChecksumUtils.calculateMD5Checksum(file);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        assertThat(SHAcheckSum == MD5checkSum, is(false));
+    }
 }
