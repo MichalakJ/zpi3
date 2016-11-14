@@ -20,4 +20,14 @@ public class EncryptionUtils {
         return null;
     }
 
+    private static void saveToFile(List<String> values, File file) {
+        for (String s : values) {
+            try {
+                Files.write(Paths.get(file.getAbsolutePath()), s.getBytes());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 }
