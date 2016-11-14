@@ -93,4 +93,12 @@ public class EncryptionUtils {
         }
     }
 
+    public static void main(String[] args) {
+        String key = "Bar12345Bar12345"; // 128 bit key
+
+        File file = new File("someFile.txt");
+        encrypt(file, key);
+        //decrypt(file, key);
+    }
+
 }
