@@ -14,5 +14,10 @@ import static org.junit.Assert.assertThat;
  */
 public class FileDownloaderTest {
 
+    @Test
+    public void urlAndDestinationValid_downloadFile_destinationExists() throws IOException {
+        FileDownloader.downloadFile("http://www.textfiles.com/games/abc.txt", "test.txt");
+        assertThat(new File("test.txt").exists(), equalTo(true));
+    }
 
 }
