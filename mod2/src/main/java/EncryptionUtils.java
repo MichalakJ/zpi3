@@ -48,6 +48,32 @@ public class EncryptionUtils {
         return null;
     }
 
+    public static File decrypt(File file, String key) {
+        try {
+            List<String> values = readFile(file);
+            List<String> originalValues = new ArrayList<>();
+
+            SecretKeySpec skeySpec = new SecretKeySpec(key.getBytes(CHARACTER_ENCODING), ENCRYPTION_TYPE);
+            IvParameterSpec iv = new IvParameterSpec(RANDOM_INIT_VECTOR.getBytes(CHARACTER_ENCODING));
+
+            for (String s : values) {
+                Cipher cipher = Cipher.getInstance(ALGORITHM);
+                cipher.init(Cipher.DECRYPT_MODE, skeySpec, iv);
+
+                byte[] original = cipher.doFinal(Base64.decodeBase64(s));
+                originalValues.add(new String(original));
+            }
+
+            saveToFile(originalValues, file);
+
+            return file;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return null;
+    }
+
     private static List<String> readFile(File file) {
         try (Stream<String> stream = Files.lines(Paths.get(file.getAbsolutePath()))) {
             return stream.collect(Collectors.toList());
