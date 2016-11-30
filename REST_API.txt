@@ -1,0 +1,23 @@
+api1
+
+POST files/{id}/actions.zip       1.2)
+POST files/{id}/actions.unzip     1.2)
+POST files/{id}/actions.encrypt   2.1)
+POST files/{id}/actions.decrypt   2.2)
+POST files - for downloading      1.1)
+
+GET  files
+GET  files/{id}
+GET  files/{id}/md5               2.2)
+GET  files/{id}/sha               2.2) 
+
+api2
+
+GET files
+GET files/{id}/zip
+POST zip
+POST encrypt
+
+
+mvn clean install
+mvn spring-boot:run
