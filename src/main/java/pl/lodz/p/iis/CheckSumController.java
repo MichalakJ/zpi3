@@ -40,4 +40,26 @@ public class CheckSumController {
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/files/{name}/sha", method = RequestMethod.POST)
+    public ResponseEntity<CheckSumRS> shaCheckSum(@PathVariable String name){
+        String fullFilePath = DEFAULT_ROOT_LOCATION + File.separator + name;
+        File file = new File(fullFilePath);
+
+        if(!file.exists()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        String sha = ChecksumUtils.calculateSHAChecksum(file);
+
+        if (StringUtils.isEmpty(sha)) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        CheckSumRS response = new CheckSumRS();
+        response.setCheckSum(sha);
+        response.setType("sha");
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 }
