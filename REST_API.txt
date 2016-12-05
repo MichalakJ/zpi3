@@ -2,7 +2,7 @@ api1
 
 POST files/{id}/actions.zip       1.2)
 POST files/{id}/actions.unzip     1.2)
-POST files/{id}/actions.encrypt   2.1)
+POST files/actions.encrypt   2.1)
 POST files/{id}/actions.decrypt   2.2)
 POST files - for downloading      1.1)
 
