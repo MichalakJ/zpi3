@@ -1,5 +1,6 @@
 package pl.lodz.p.iis;
 
+import EncryptionUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
