@@ -3,7 +3,7 @@ package pl.lodz.p.iis.library;
 /**
  * @Author Mateusz Wieczorek on 05.12.2016.
  */
-public class EncryptFileRQ {
+public class EncryptionFileRQ {
 
     private String name;
     private String encryptionKey;
@@ -26,7 +26,7 @@ public class EncryptFileRQ {
 
     @Override
     public String toString() {
-        return "EncryptFileRQ{" +
+        return "EncryptionFileRQ{" +
                 "name='" + name + '\'' +
                 ", encryptionKey='" + encryptionKey + '\'' +
                 '}';
