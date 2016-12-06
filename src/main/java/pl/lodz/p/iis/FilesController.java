@@ -34,8 +34,13 @@ public class FilesController {
     }
 
     @RequestMapping(value = "/files/{name}/actions.zip", method = RequestMethod.POST)
-    public ResponseEntity<ResultMessage> zipFile(@PathVariable String name, @RequestBody String zipName){
-        return new ResponseEntity<ResultMessage>(new ResultMessage("not implemented"), HttpStatus.NOT_IMPLEMENTED);
+    public ResponseEntity<ResultMessage> zipFile(@PathVariable String name, @RequestBody PostFile zipName){
+        try {
+            ZipManager.zip(ROOT_LOCATION + File.separator + name, ROOT_LOCATION + File.separator + zipName.getName());
+        }catch(Exception ex){
+            return new ResponseEntity<ResultMessage>(new ResultMessage("cannot create zip archive: "+ ex.getMessage()), HttpStatus.OK);
+        }
+        return new ResponseEntity<ResultMessage>(new ResultMessage("success"), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/files/{name}/actions.unzip", method = RequestMethod.POST)
